@@ -23,6 +23,10 @@ export default defineConfig({
       '@': resolve(projectRoot, 'src')
     }
   },
+  // Expose the Pages build flag so client code can skip unavailable backend calls.
+  define: {
+    __GITHUB_PAGES__: !!process.env.GITHUB_PAGES,
+  },
   // Disable lightningcss CSS minification — Tailwind v4 generates
   // @media (width >= (display-mode: standalone)) which lightningcss cannot parse.
   build: {
