@@ -96,21 +96,21 @@ export function RoleSelection({ onSelectRole }: RoleSelectionProps) {
                 <div className="space-y-3 mb-6 text-left">
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Star weight="fill" className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="font-medium">Discover & review venues</span>
+                    <span className="font-medium text-foreground">Discover & review venues</span>
                   </div>
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Users weight="fill" className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="font-medium">Follow bartenders</span>
+                    <span className="font-medium text-foreground">Follow bartenders</span>
                   </div>
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Sparkle weight="fill" className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="font-medium">Track achievements</span>
+                    <span className="font-medium text-foreground">Track achievements</span>
                   </div>
                 </div>
 
-                <Button 
-                  size="lg" 
-                  className="w-full h-12 text-base font-bold bg-gradient-to-r from-accent to-secondary hover:shadow-2xl transition-all duration-300"
+                <Button
+                  size="lg"
+                  className="w-full h-12 text-base font-bold bg-gradient-to-r from-accent to-secondary text-foreground hover:shadow-2xl transition-all duration-300"
                 >
                   Join as Drinker
                 </Button>
@@ -169,21 +169,21 @@ export function RoleSelection({ onSelectRole }: RoleSelectionProps) {
                 <div className="space-y-3 mb-6 text-left">
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Sparkle weight="fill" className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="font-medium">Showcase signature drinks</span>
+                    <span className="font-medium text-foreground">Showcase signature drinks</span>
                   </div>
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Briefcase weight="fill" className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="font-medium">Find job opportunities</span>
+                    <span className="font-medium text-foreground">Find job opportunities</span>
                   </div>
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Users weight="fill" className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="font-medium">Build a following</span>
+                    <span className="font-medium text-foreground">Build a following</span>
                   </div>
                 </div>
 
-                <Button 
-                  size="lg" 
-                  className="w-full h-12 text-base font-bold bg-gradient-to-r from-primary to-accent hover:shadow-2xl transition-all duration-300"
+                <Button
+                  size="lg"
+                  className="w-full h-12 text-base font-bold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-2xl transition-all duration-300"
                 >
                   Join as Pourer
                 </Button>
@@ -242,21 +242,21 @@ export function RoleSelection({ onSelectRole }: RoleSelectionProps) {
                 <div className="space-y-3 mb-6 text-left">
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Briefcase weight="fill" className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="font-medium">Post job openings</span>
+                    <span className="font-medium text-foreground">Post job openings</span>
                   </div>
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <CalendarPlus weight="fill" className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="font-medium">Manage schedules</span>
+                    <span className="font-medium text-foreground">Manage schedules</span>
                   </div>
                   <div className="flex items-center gap-3 glass-morphic p-3 rounded-xl text-sm">
                     <Star weight="fill" className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="font-medium">Promote events</span>
+                    <span className="font-medium text-foreground">Promote events</span>
                   </div>
                 </div>
 
-                <Button 
-                  size="lg" 
-                  className="w-full h-12 text-base font-bold bg-gradient-to-r from-secondary to-accent hover:shadow-2xl transition-all duration-300"
+                <Button
+                  size="lg"
+                  className="w-full h-12 text-base font-bold bg-gradient-to-r from-secondary to-accent text-foreground hover:shadow-2xl transition-all duration-300"
                 >
                   Join as Venue
                 </Button>
