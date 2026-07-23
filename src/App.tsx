@@ -46,6 +46,7 @@ function App() {
   const [showFilters, setShowFilters] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [activeTab, setActiveTab] = useState('venues');
+  const [contentLoadAttempted, setContentLoadAttempted] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     dealTypes: [],
     priceLevel: [],
@@ -65,8 +66,34 @@ function App() {
       if (!dailyContent || dailyContent.date !== new Date().toISOString().split('T')[0]) {
         const themes: DrinkingTheme[] = ['famous-drunks', 'literary', 'archetypal', 'prohibition', 'ancient-rome'];
         const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-        const content = await generateDailyContent(randomTheme);
-        setDailyContent(content);
+        try {
+          const content = await generateDailyContent(randomTheme);
+          setDailyContent(content);
+        } catch {
+          // generateDailyContent has its own fallback, but if spark.llm itself is unavailable
+          // (e.g. 404 in production), surface a static fallback so the page isn't empty.
+          const today = new Date().toISOString().split('T')[0];
+          setDailyContent({
+            id: `daily-static-${today}`,
+            date: today,
+            theme: 'famous-drunks',
+            quote: 'Write drunk, edit sober.',
+            quoteAuthor: 'Ernest Hemingway',
+            story: 'Ernest Hemingway was known for his love of strong drinks and stronger stories. His favorite haunts included Harry\'s Bar in Venice and La Floridita in Havana, where he claimed to have consumed thousands of daiquiris. Hemingway believed that writing while drinking allowed him to access deeper emotions and truths, though he always maintained the discipline to edit his work with a clear head the next day.',
+            cocktailOfTheDay: {
+              name: 'Death in the Afternoon',
+              recipe: '1 jigger absinthe, champagne to fill. Pour absinthe into champagne glass, add champagne until it attains proper opalescent milkiness.',
+              history: 'Created by Hemingway himself and named after his 1932 book about bullfighting.'
+            },
+            historicalFact: 'Winston Churchill started drinking champagne at breakfast and continued throughout the day, claiming it saved him during difficult wartime decisions.',
+            recommendedVenues: [],
+            generatedAt: new Date().toISOString()
+          });
+        } finally {
+          setContentLoadAttempted(true);
+        }
+      } else {
+        setContentLoadAttempted(true);
       }
     };
     loadDailyContent();
@@ -639,6 +666,22 @@ function App() {
                       setActiveTab('venues');
                     }}
                   />
+                ) : contentLoadAttempted ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="glass-card p-12 rounded-3xl text-center"
+                  >
+                    <div className="text-6xl mb-4">🥃</div>
+                    <h2 className="text-2xl font-bold mb-3 text-foreground">Today's Happy Hour Feature</h2>
+                    <p className="text-lg text-muted-foreground mb-6">
+                      "Write drunk, edit sober." — Ernest Hemingway
+                    </p>
+                    <p className="text-base text-foreground leading-relaxed max-w-prose mx-auto">
+                      Happy hour is more than a discount — it's a daily ritual connecting people over craft drinks,
+                      great conversation, and shared moments. Explore local venues to find your perfect spot tonight.
+                    </p>
+                  </motion.div>
                 ) : (
                   <motion.div
                     initial={{ opacity: 0 }}
