@@ -2,7 +2,14 @@ import { DailyContent, DrinkingTheme } from './types';
 
 export async function generateDailyContent(theme: DrinkingTheme): Promise<DailyContent> {
   const today = new Date().toISOString().split('T')[0];
-  
+
+  // On the static GitHub Pages deploy there is no backend to serve LLM requests.
+  // Skip the network call entirely and go straight to the pre-authored fallback
+  // so the browser never fires a request that would result in a 405 console error.
+  if (typeof __GITHUB_PAGES__ !== 'undefined' && __GITHUB_PAGES__) {
+    return getFallbackContent(theme, today);
+  }
+
   const themePrompts = {
     'famous-drunks': 'a legendary drinker from history (like Hemingway, Churchill, Bukowski, or Dorothy Parker)',
     'literary': 'literature and drinking culture (famous writers, books about drinking, or cocktails from literature)',
